@@ -1,0 +1,179 @@
+{
+  "$schema": "https://mcp.so/schema.json",
+  "name": "careflow-mcp",
+  "version": "1.0.0",
+  "description": "CareFlow MCP - Production-ready healthcare workflow automation with HIPAA-compliant patient task management powered by n8n",
+  "icon": "🏥",
+  "categories": ["healthcare", "automation", "workflow", "integration"],
+  "author": {
+    "name": "Pratap Pattanayak",
+    "url": "https://github.com/pratapsfdc22-dev"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pratapsfdc22-dev/careflow-mcp"
+  },
+  "homepage": "https://github.com/pratapsfdc22-dev/careflow-mcp#readme",
+  "bugs": "https://github.com/pratapsfdc22-dev/careflow-mcp/issues",
+  "runtime": "node",
+  "protocol": "stdio",
+  "tools": [
+    {
+      "name": "trigger_workflow",
+      "description": "Triggers an n8n webhook workflow by name and passes a JSON payload. Returns execution ID or response data.",
+      "parameters": {
+        "workflowName": {
+          "type": "string",
+          "required": true,
+          "description": "Name of the n8n workflow to trigger"
+        },
+        "payload": {
+          "type": "object",
+          "required": false,
+          "description": "JSON payload to send to the workflow webhook",
+          "default": {}
+        }
+      }
+    },
+    {
+      "name": "list_workflows",
+      "description": "Lists all active workflows from n8n REST API. Returns workflow IDs, names, and metadata.",
+      "parameters": {}
+    },
+    {
+      "name": "get_workflow_status",
+      "description": "Checks execution status of a workflow run by execution ID. Returns status, timestamps, and result data.",
+      "parameters": {
+        "executionId": {
+          "type": "string",
+          "required": true,
+          "description": "The execution ID returned from trigger_workflow"
+        }
+      }
+    },
+    {
+      "name": "create_patient_task",
+      "description": "Sends a structured patient task payload to a specified n8n workflow. Designed for healthcare workflows with HIPAA compliance.",
+      "parameters": {
+        "workflowName": {
+          "type": "string",
+          "required": true,
+          "description": "Name of the n8n workflow to receive the task"
+        },
+        "patientId": {
+          "type": "string",
+          "required": true,
+          "description": "Unique identifier for the patient"
+        },
+        "taskType": {
+          "type": "string",
+          "required": true,
+          "description": "Type of task (e.g., appointment, medication, followup)"
+        },
+        "priority": {
+          "type": "string",
+          "required": false,
+          "enum": ["low", "medium", "high", "urgent"],
+          "default": "medium",
+          "description": "Task priority level"
+        },
+        "description": {
+          "type": "string",
+          "required": false,
+          "description": "Detailed description of the task"
+        },
+        "dueDate": {
+          "type": "string",
+          "required": false,
+          "description": "Due date in ISO 8601 format (YYYY-MM-DD)"
+        },
+        "assignedTo": {
+          "type": "string",
+          "required": false,
+          "description": "User or team assigned to the task"
+        },
+        "metadata": {
+          "type": "object",
+          "required": false,
+          "description": "Additional metadata for the task"
+        }
+      }
+    }
+  ],
+  "configuration": {
+    "required": ["N8N_BASE_URL", "N8N_API_KEY"],
+    "optional": ["N8N_WEBHOOK_SECRET"],
+    "env": {
+      "N8N_BASE_URL": {
+        "type": "string",
+        "description": "Base URL of your n8n instance (e.g., https://n8n.example.com)",
+        "required": true
+      },
+      "N8N_API_KEY": {
+        "type": "string",
+        "description": "n8n API Key (generate in n8n Settings > API)",
+        "required": true,
+        "sensitive": true
+      },
+      "N8N_WEBHOOK_SECRET": {
+        "type": "string",
+        "description": "Optional webhook secret for authenticated endpoints",
+        "required": false,
+        "sensitive": true
+      }
+    }
+  },
+  "installation": {
+    "npm": "npm install -g careflow-mcp",
+    "source": "git clone https://github.com/pratapsfdc22-dev/careflow-mcp.git && cd careflow-mcp && npm install && npm run build"
+  },
+  "examples": [
+    {
+      "name": "Healthcare Patient Management",
+      "description": "HIPAA-compliant patient task management with EHR integration",
+      "file": "examples/healthcare-patient-task-workflow.json"
+    },
+    {
+      "name": "E-commerce Order Processing",
+      "description": "Automated order processing with inventory, payment, and shipping",
+      "file": "examples/ecommerce-order-workflow.json"
+    }
+  ],
+  "documentation": [
+    {
+      "title": "HIPAA Compliance Guide",
+      "url": "https://github.com/pratapsfdc22-dev/careflow-mcp/blob/main/HEALTHCARE.md"
+    },
+    {
+      "title": "Case Studies",
+      "url": "https://github.com/pratapsfdc22-dev/careflow-mcp/blob/main/case-studies/README.md"
+    }
+  ],
+  "tags": [
+    "careflow",
+    "healthcare",
+    "hipaa",
+    "patient-management",
+    "care-coordination",
+    "n8n",
+    "workflow",
+    "automation",
+    "ehr-integration",
+    "medical-workflow",
+    "typescript"
+  ],
+  "features": [
+    "🏥 HIPAA-compliant healthcare workflows",
+    "🚀 Trigger n8n workflows via natural language",
+    "📊 Real-time workflow execution monitoring",
+    "🔒 Type-safe with Zod validation",
+    "⚡ Production-ready with error handling",
+    "📚 Comprehensive documentation with case studies",
+    "🎯 Healthcare-specific patient task management"
+  ],
+  "requirements": {
+    "node": ">=18.0.0",
+    "n8n": ">=1.0.0"
+  }
+}
