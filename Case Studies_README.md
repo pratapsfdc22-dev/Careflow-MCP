@@ -15,7 +15,7 @@ These case studies show practical applications of the MCP server across differen
 
 ### 🏥 1. Healthcare Patient Management
 **File**: [01-healthcare-patient-management.md](./01-healthcare-patient-management.md)
-**Example Workflow**: [healthcare-patient-task-workflow.json](../examples/healthcare-patient-task-workflow.json)
+**Example Workflow**: [[healthcare-patient-task-workflow.json](../examples/healthcare-patient-task-workflow.json)](https://github.com/pratapsfdc22-dev/Careflow-MCP/blob/main/healthcare-patient-task-workflow.json)]
 
 Automate patient task creation, appointment scheduling, and care coordination using Claude AI with full HIPAA compliance considerations.
 
