@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "description": "Production-ready MCP server for healthcare workflow automation with n8n - HIPAA-compliant patient task management and care coordination",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "bin": {
     "careflow-mcp": "./dist/index.js"
   },
+  "files": [
+    "dist/**/*",
+    "README.md",
+    "LICENSE",
+    "HEALTHCARE.md",
+    "examples/**/*"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
@@ -34,7 +42,7 @@
     "medical-workflow",
     "typescript"
   ],
-  "author": "Your Name <your.email@example.com>",
+  "author": "Pratap Pattanayak <pratap.pattanayak@gmail.com>",
   "license": "MIT",
   "mcp": {
     "protocol_version": "1.0.0",
@@ -64,12 +72,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/pratapsfdc22-dev/careflow-mcp.git"
+    "url": "https://github.com/pratapsfdc22-dev/Careflow-MCP.git"
   },
   "bugs": {
-    "url": "https://github.com/pratapsfdc22-dev/careflow-mcp/issues"
+    "url": "https://github.com/pratapsfdc22-dev/Careflow-MCP/issues"
   },
-  "homepage": "https://github.com/pratapsfdc22-dev/careflow-mcp#readme",
+  "homepage": "https://github.com/pratapsfdc22-dev/Careflow-MCP#readme",
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.0.4",
     "axios": "^1.7.9",
